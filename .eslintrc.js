@@ -26,6 +26,10 @@ module.exports = {
           "jsx": true
         }
     },
+    "globals": {
+      "SyntheticEvent": true,
+      "SyntheticInputEvent": true
+    },
     "extends": [
       "airbnb"
     ],

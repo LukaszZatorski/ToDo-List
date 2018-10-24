@@ -1,7 +1,17 @@
 // @flow
 import React from 'react';
 
-const Item = ({ item }) => (
+type ToDoItem = {
+  id: number,
+  completed: boolean,
+  title: string,
+}
+
+type ItemProps = {
+  item: ToDoItem,
+}
+
+const Item = ({ item }: ItemProps) => (
   <div>{item.title}</div>
 );
 

@@ -2,14 +2,22 @@
 import React from 'react';
 import axios from 'axios';
 import Item from '../Item';
+import ItemForm from '../ItemForm';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-    };
-  }
+type ToDoItem = {
+  id: number,
+  completed: boolean,
+  title: string,
+}
+
+type AppState = {
+  items: Array<ToDoItem>,
+};
+
+class App extends React.Component<{}, AppState> {
+  state = {
+    items: [],
+  };
 
   componentDidMount() {
     axios
@@ -29,6 +37,7 @@ class App extends React.Component {
           <h1>To-do list</h1>
         </div>
         <div className="list">
+          {<ItemForm />}
           {items.map(item => <Item key={item.id} item={item} />)}
         </div>
       </React.Fragment>
