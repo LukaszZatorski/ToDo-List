@@ -47,6 +47,7 @@ module.exports = {
                                                    // a function will be skipped.
   },
   "rules": {
-    "no-console": 0
+    "no-console": 0,
+    "max-len": ["error", { "code": 80 }]
   }
 };

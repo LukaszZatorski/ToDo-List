@@ -11,7 +11,7 @@ module Api::V1
     end
 
     def destroy
-      @item = Item.find(item_params[:id])
+      @item = Item.find(params[:id])
       if @item.destroy
         head :no_content, status: :ok
       else

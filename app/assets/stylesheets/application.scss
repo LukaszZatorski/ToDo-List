@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+
+.to-do-item {
+  .item-title {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
