@@ -14,10 +14,56 @@
  *= require_self
  */
 
+body {
+  background-color: #f6f6f6;
+  font: 16px Helvetica, Arial, sans-serif;
+}
 
-.to-do-item {
-  .item-title {
-    display: inline-block;
-    margin-right: 10px;
+.heading {
+  text-align: center;
+  font-size: 2em;
+  opacity: 0.5;
+}
+
+.list{
+  background: #fff;
+  max-width: 25%;
+  margin: auto;
+  border: solid 1px #e6e6e6;
+  font-size: 1.5em;
+  -webkit-box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.25), 1px 25px 50px 0px rgba(0,0,0,0.15);
+  box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.25), 1px 25px 50px 0px rgba(0,0,0,0.15);
+  .item-form {
+    padding: 0.5em 0;
+    margin: 0 0.5em;
+    input {
+      border: none;
+      font-size: 1.5em;
+      max-width: 100%;
+    }
+    input::placeholder {
+      opacity: 0.5;
+    }
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    }
+    input:focus {
+      outline: none;
+    }
+  }
+  .to-do-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid #e6e6e6;
+    color: #4d4d4d;
+    .item-title {
+      display: inline-block;
+      margin: 0.75em 0.5em;
+    }
+    .delete-button {
+      cursor: pointer;
+    }
   }
 }
