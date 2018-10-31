@@ -54,16 +54,55 @@ body {
   .to-do-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     border-top: 1px solid #e6e6e6;
     color: #4d4d4d;
+    .toggle-completed {
+      margin-left: 5px;
+      height: 1.5em;
+      width: 1.5em;
+      border: 2px solid #e6e6e6;
+      border-radius: 50%;
+    }
+    .checkmark {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      &:after{
+        content: '';
+        width: 0.5em;
+        height: 1em;
+        border: solid #004d00;
+        border-width: 0 3px 3px 0;
+        margin-top: 2px;
+        transform: rotate(35deg);
+      }
+    }
+    .completed {
+      display: flex;
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
     .item-title {
       display: inline-block;
       margin: 0.75em 0.5em;
     }
     .delete-button {
       cursor: pointer;
+      color: #aa5555;
+      margin-left: auto;
+      margin-right: 10px;
+      visibility: hidden;
     }
   }
+  .to-do-item:hover .delete-button {
+    visibility: visible;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+    .list {
+        max-width: 90%;
+    }
 }

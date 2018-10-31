@@ -30,13 +30,31 @@ class App extends React.Component<{}, AppState> {
       .catch(error => console.log(error));
   }
 
-  deleteUser = (id: number) => {
+  deleteItem = (id: number) => {
     axios
       .delete(`api/v1/items/${id}`)
       .then(() => {
         const { items } = this.state;
         const itemIndex = items.findIndex(x => x.id === id);
         const updatedItems = update(items, { $splice: [[itemIndex, 1]] });
+        this.setState({ items: updatedItems });
+      })
+      .catch(error => console.log(error));
+  };
+
+  completeItem = (item: ToDoItem) => {
+    const updatedItem = { completed: !item.completed };
+    axios
+      .put(`api/v1/items/${item.id}`, {
+        item: updatedItem,
+      })
+      .then((response) => {
+        console.log(response);
+        const { items } = this.state;
+        const itemIndex = items.findIndex(x => x.id === item.id);
+        const updatedItems = update(items, {
+          [itemIndex]: { $set: response.data },
+        });
         this.setState({ items: updatedItems });
       })
       .catch(error => console.log(error));
@@ -52,7 +70,12 @@ class App extends React.Component<{}, AppState> {
         <div className="list">
           {<ItemForm />}
           {items.map(item => (
-            <Item key={item.id} item={item} onDelete={this.deleteUser} />
+            <Item
+              key={item.id}
+              item={item}
+              onDelete={this.deleteItem}
+              onComplete={this.completeItem}
+            />
           ))}
         </div>
       </React.Fragment>

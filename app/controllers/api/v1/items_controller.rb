@@ -10,6 +10,12 @@ module Api::V1
       render json: @user
     end
 
+    def update
+      @item = Item.find(params[:id])
+      @item.update_attributes(item_params)
+      render json: @item
+    end
+
     def destroy
       @item = Item.find(params[:id])
       if @item.destroy
