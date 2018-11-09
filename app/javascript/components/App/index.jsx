@@ -13,11 +13,13 @@ type ToDoItem = {
 
 type AppState = {
   items: Array<ToDoItem>,
+  editingItemId: null | number,
 };
 
 class App extends React.Component<{}, AppState> {
   state = {
     items: [],
+    editingItemId: null,
   };
 
   componentDidMount() {
@@ -60,23 +62,59 @@ class App extends React.Component<{}, AppState> {
       .catch(error => console.log(error));
   };
 
-  render() {
+  updateItem = (item: ToDoItem) => {
     const { items } = this.state;
+    const itemIndex = items.findIndex(x => x.id === item.id);
+    const updatedItem = update(items, { [itemIndex]: { $set: item } });
+    this.setState({ items: updatedItem });
+  };
+
+  updateList = (item: ToDoItem) => {
+    const { items } = this.state;
+    const updatedList = update(items, { $splice: [[0, 0, item]] });
+    this.setState({ items: updatedList });
+  }
+
+  enableEditing = (id: number) => {
+    this.setState({ editingItemId: id });
+  };
+
+  stopEditing = () => {
+    this.setState({ editingItemId: null });
+  };
+
+  render() {
+    const { items, editingItemId } = this.state;
     return (
       <React.Fragment>
         <div className="heading">
           <h1>To-do list</h1>
         </div>
         <div className="list">
-          {<ItemForm />}
-          {items.map(item => (
-            <Item
-              key={item.id}
-              item={item}
-              onDelete={this.deleteItem}
-              onComplete={this.completeItem}
+          {
+            <ItemForm
+              stopEditing={this.stopEditing}
+              updateItems={this.updateList}
             />
-          ))}
+          }
+          {items.map(
+            item => (item.id === editingItemId ? (
+              <ItemForm
+                key={item.id}
+                item={item}
+                stopEditing={this.stopEditing}
+                updateItems={this.updateItem}
+              />
+            ) : (
+              <Item
+                key={item.id}
+                item={item}
+                onDelete={this.deleteItem}
+                onComplete={this.completeItem}
+                onEditing={this.enableEditing}
+              />
+            )),
+          )}
         </div>
       </React.Fragment>
     );

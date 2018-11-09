@@ -27,22 +27,25 @@ body {
 
 .list{
   background: #fff;
-  max-width: 25%;
+  max-width: 30%;
   margin: auto;
   border: solid 1px #e6e6e6;
-  font-size: 1.5em;
+  border-top: none;
+  font-size: 1.75em;
   -webkit-box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.25), 1px 25px 50px 0px rgba(0,0,0,0.15);
   box-shadow: 1px 2px 4px 0px rgba(0,0,0,0.25), 1px 25px 50px 0px rgba(0,0,0,0.15);
   .item-form {
-    padding: 0.5em 0;
-    margin: 0 0.5em;
+    border-top: solid 1px #e6e6e6;
     input {
+      padding-left: 10%;
       border: none;
-      font-size: 1.5em;
-      max-width: 100%;
+      font-size: 1em;
+      max-width: 90%;
+      color: #4d4d4d;
+      margin: 0.75em 0;
     }
     input::placeholder {
-      opacity: 0.5;
+      opacity: 0.8;
     }
     input:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px #fff inset;

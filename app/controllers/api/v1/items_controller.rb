@@ -7,7 +7,7 @@ module Api::V1
 
     def create
       @item = Item.create(item_params)
-      render json: @user
+      render json: @item
     end
 
     def update

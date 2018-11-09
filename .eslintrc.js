@@ -1,7 +1,8 @@
 module.exports = {
     "parser": "babel-eslint",
     "plugins": [
-      "react"
+      "react",
+      "flowtype"
     ],
     "parserOptions": {
         "ecmaVersion": 6,
@@ -28,7 +29,8 @@ module.exports = {
     },
     "globals": {
       "SyntheticEvent": true,
-      "SyntheticInputEvent": true
+      "SyntheticInputEvent": true,
+      "SyntheticKeyboardEvent": true,
     },
     "extends": [
       "airbnb"
@@ -48,6 +50,9 @@ module.exports = {
   },
   "rules": {
     "no-console": 0,
-    "max-len": ["error", { "code": 80 }]
+    "max-len": ["error", { "code": 80 }],
+    "react/require-default-props": 0,
+    "no-unused-expressions": [2, { "allowTernary": true }],
+    "flowtype/define-flow-type": 1
   }
 };

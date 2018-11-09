@@ -11,10 +11,13 @@ type ToDoItem = {
 type ItemProps = {
   item: ToDoItem,
   onComplete: (item: ToDoItem) => void,
+  onEditing: (id: number) => void,
   onDelete: (id: number) => void,
 };
 
-const Item = ({ item, onDelete, onComplete }: ItemProps) => (
+const Item = ({
+  item, onComplete, onEditing, onDelete,
+}: ItemProps) => (
   <div className="to-do-item">
     <div
       className="toggle-completed"
@@ -27,9 +30,15 @@ const Item = ({ item, onDelete, onComplete }: ItemProps) => (
         className={classNames('checkmark', { completed: item.completed })}
       />
     </div>
-    <p className={classNames('item-title', { completed: item.completed })}>
+    <div
+      className={classNames('item-title', { completed: item.completed })}
+      role="button"
+      tabIndex={0}
+      onClick={() => onEditing(item.id)}
+      onKeyPress={() => onEditing(item.id)}
+    >
       {item.title}
-    </p>
+    </div>
     <span
       className="delete-button"
       role="button"
